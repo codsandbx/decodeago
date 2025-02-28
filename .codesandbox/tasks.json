@@ -2,7 +2,7 @@
   "setupTasks": [
     {
       "name": "Installing Dependencies",
-      "command": "npm install" // 改为 npm，因你的项目未明确使用 pnpm
+      "command": "npm install"
     }
   ],
   "tasks": {
@@ -10,9 +10,9 @@
       "name": "Start Server",
       "command": "node index.js",
       "runAtStart": true,
-      "isBackground": true, // 后台运行，避免阻塞
+      "isBackground": true,
       "preview": {
-        "port": 3000 // 明确映射 3000 端口
+        "port": 3000
       }
     }
   }
