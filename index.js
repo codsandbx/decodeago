@@ -1,8 +1,8 @@
-const FILE_PATH = process.env.FILE_PATH || './temp'; // 运行文件夹，节点文件存放目录
-const projectPageURL = process.env.URL || '';        // 项目域名，开启自动访问保活
-const intervalInseconds = process.env.TIME || 120;   // 自动访问间隔时间（120秒）
+const FILE_PATH = process.env.FILE_PATH || './temp';
+const projectPageURL = process.env.URL || '';
+const intervalInseconds = process.env.TIME || 120;
 const UUID = process.env.UUID || '02039208-7f6c-4375-7aea-501cc5fce2ee';
-const NEZHA_SERVER = process.env.NEZHA_SERVER || ''; // 哪吒探针服务器
+const NEZHA_SERVER = process.env.NEZHA_SERVER || '';
 const NEZHA_PORT = process.env.NEZHA_PORT || '5555';
 const NEZHA_KEY = process.env.NEZHA_KEY || '';
 const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'decodeeoce.ttccf.ggff.net';
@@ -52,7 +52,6 @@ function cleanupOldFiles() {
         });
     });
 }
-cleanupOldFiles();
 
 // 主页路由
 app[_0x1b4713(0x196)]('/', function(_0x4ffb29, _0x41c7b5) {
@@ -63,7 +62,7 @@ app[_0x1b4713(0x196)]('/', function(_0x4ffb29, _0x41c7b5) {
 // 重启路由
 app.get('/restart', async (req, res) => {
     console.log('Restart requested via external URL');
-    await downloadFilesAndRun(); // 只重新执行核心逻辑，避免重复监听端口
+    await downloadFilesAndRun();
     res.send('Service restarted successfully');
 });
 
@@ -230,15 +229,14 @@ function argoType() {
         fs[_0x2f76e9(0x1d2)](path[_0x2f76e9(0x1f2)](FILE_PATH, 'tunnel.yml'), _0x2ffcb9);
     } else console[_0x2f76e9(0x1fa)]('ARGO_AUTH mismatch TunnelSecret, use token connect to tunnel');
 }
-argoType();
 
-async function extractDomains() {
+function extractDomains() {
     const _0x2d0c0b = _0x1b4713;
     let _0x5a01d2;
     if (ARGO_AUTH && ARGO_DOMAIN) {
         _0x5a01d2 = ARGO_DOMAIN;
         console[_0x2d0c0b(0x1fa)](_0x2d0c0b(0x1d5), _0x5a01d2);
-        await _0x3db339(_0x5a01d2);
+        _0x3db339(_0x5a01d2);
     } else {
         try {
             const _0x3e7ee4 = fs['readFileSync'](path[_0x2d0c0b(0x1f2)](FILE_PATH, _0x2d0c0b(0x190)), 'utf-8');
@@ -255,47 +253,45 @@ async function extractDomains() {
             if (_0x3aaaec[_0x2d0c0b(0x1b6)] > 0x0) {
                 _0x5a01d2 = _0x3aaaec[0x0];
                 console['log'](_0x2d0c0b(0x1de), _0x5a01d2);
-                await _0x3db339(_0x5a01d2);
+                _0x3db339(_0x5a01d2);
             } else {
                 console[_0x2d0c0b(0x1fa)]('ArgoDomain not found, re-running bot to obtain ArgoDomain');
                 fs[_0x2d0c0b(0x19a)](path[_0x2d0c0b(0x1f2)](FILE_PATH, _0x2d0c0b(0x190)));
-                await new Promise(_0x48bc05 => setTimeout(_0x48bc05, 0x7d0));
-                const _0x42651c = _0x2d0c0b(0x1e8) + FILE_PATH + _0x2d0c0b(0x1a5) + ARGO_PORT;
-                try {
-                    await exec('nohup ' + path[_0x2d0c0b(0x1f2)](FILE_PATH, _0x2d0c0b(0x197)) + ' ' + _0x42651c + ' >/dev/null 2>&1 &');
-                    console[_0x2d0c0b(0x1fa)](_0x2d0c0b(0x1f9));
-                    await new Promise(_0x3d748d => setTimeout(_0x3d748d, 0xbb8));
-                    await extractDomains();
-                } catch (_0x29b197) {
-                    console[_0x2d0c0b(0x1b0)](_0x2d0c0b(0x1d7) + _0x29b197);
-                }
+                setTimeout(() => {
+                    const _0x2d0c0b = _0x1b4713;
+                    const _0x42651c = _0x2d0c0b(0x1e8) + FILE_PATH + _0x2d0c0b(0x1a5) + ARGO_PORT;
+                    exec('nohup ' + path[_0x2d0c0b(0x1f2)](FILE_PATH, _0x2d0c0b(0x197)) + ' ' + _0x42651c + ' >/dev/null 2>&1 &')
+                        .then(() => {
+                            console[_0x2d0c0b(0x1fa)](_0x2d0c0b(0x1f9));
+                            setTimeout(() => extractDomains(), 0xbb8);
+                        })
+                        .catch(_0x29b197 => console[_0x2d0c0b(0x1b0)](_0x2d0c0b(0x1d7) + _0x29b197));
+                }, 0x7d0);
             }
         } catch (_0x1c8e60) {
             console[_0x2d0c0b(0x1b0)]('Error reading boot.log:', _0x1c8e60);
         }
     }
-    async function _0x3db339(_0x5f21cd) {
+
+    function _0x3db339(_0x5f21cd) {
         const _0x344696 = _0x2d0c0b;
         const _0x14f215 = execSync(_0x344696(0x1fe), { 'encoding': _0x344696(0x1bf) });
         const _0x11ede8 = _0x14f215[_0x344696(0x18c)]();
-        return new Promise(_0x41b261 => {
-            setTimeout(() => {
-                const _0x336581 = _0x4107;
-                const _0x2b51d4 = { 'v': '2', 'ps': NAME + '-' + _0x11ede8, 'add': CFIP, 'port': CFPORT, 'id': UUID, 'aid': '0', 'scy': 'none', 'net': 'ws', 'type': _0x336581(0x1e7), 'host': _0x5f21cd, 'path': _0x336581(0x1e1), 'tls': _0x336581(0x1d0), 'sni': _0x5f21cd, 'alpn': '' };
-                const _0x4d4498 = _0x336581(0x204) + UUID + '@' + CFIP + ':' + CFPORT + _0x336581(0x1c9) + _0x5f21cd + _0x336581(0x20d) + _0x5f21cd + _0x336581(0x1fc) + NAME + '-' + _0x11ede8 + _0x336581(0x19c) + Buffer[_0x336581(0x218)](JSON[_0x336581(0x1f4)](_0x2b51d4))[_0x336581(0x1f6)](_0x336581(0x205)) + '\x0a  trojan://' + UUID + '@' + CFIP + ':' + CFPORT + _0x336581(0x1ed) + _0x5f21cd + _0x336581(0x20d) + _0x5f21cd + _0x336581(0x21c) + NAME + '-' + _0x11ede8 + _0x336581(0x210);
-                console[_0x336581(0x1fa)](Buffer[_0x336581(0x218)](_0x4d4498)['toString'](_0x336581(0x205)));
-                const _0x3b0229 = path[_0x336581(0x1f2)](FILE_PATH, _0x336581(0x1ac));
-                fs[_0x336581(0x1d2)](_0x3b0229, Buffer[_0x336581(0x218)](_0x4d4498)[_0x336581(0x1f6)](_0x336581(0x205)));
-                console['log'](FILE_PATH + _0x336581(0x1b9));
-                app[_0x336581(0x196)](_0x336581(0x1da), (_0x491e6a, _0x58cfe1) => {
-                    const _0x138593 = _0x336581;
-                    const _0x3e52eb = Buffer[_0x138593(0x218)](_0x4d4498)[_0x138593(0x1f6)](_0x138593(0x205));
-                    _0x58cfe1[_0x138593(0x1b8)](_0x138593(0x1bb), 'text/plain; charset=utf-8');
-                    _0x58cfe1[_0x138593(0x192)](_0x3e52eb);
-                });
-                _0x41b261(_0x4d4498);
-            }, 0x7d0);
-        });
+        setTimeout(() => {
+            const _0x336581 = _0x4107;
+            const _0x2b51d4 = { 'v': '2', 'ps': NAME + '-' + _0x11ede8, 'add': CFIP, 'port': CFPORT, 'id': UUID, 'aid': '0', 'scy': 'none', 'net': 'ws', 'type': _0x336581(0x1e7), 'host': _0x5f21cd, 'path': _0x336581(0x1e1), 'tls': _0x336581(0x1d0), 'sni': _0x5f21cd, 'alpn': '' };
+            const _0x4d4498 = _0x336581(0x204) + UUID + '@' + CFIP + ':' + CFPORT + _0x336581(0x1c9) + _0x5f21cd + _0x336581(0x20d) + _0x5f21cd + _0x336581(0x1fc) + NAME + '-' + _0x11ede8 + _0x336581(0x19c) + Buffer[_0x336581(0x218)](JSON[_0x336581(0x1f4)](_0x2b51d4))[_0x336581(0x1f6)](_0x336581(0x205)) + '\x0a  trojan://' + UUID + '@' + CFIP + ':' + CFPORT + _0x336581(0x1ed) + _0x5f21cd + _0x336581(0x20d) + _0x5f21cd + _0x336581(0x21c) + NAME + '-' + _0x11ede8 + _0x336581(0x210);
+            console[_0x336581(0x1fa)](Buffer[_0x336581(0x218)](_0x4d4498)['toString'](_0x336581(0x205)));
+            const _0x3b0229 = path[_0x336581(0x1f2)](FILE_PATH, _0x336581(0x1ac));
+            fs[_0x336581(0x1d2)](_0x3b0229, Buffer[_0x336581(0x218)](_0x4d4498)[_0x336581(0x1f6)](_0x336581(0x205)));
+            console['log'](FILE_PATH + _0x336581(0x1b9));
+            app[_0x336581(0x196)](_0x336581(0x1da), (_0x491e6a, _0x58cfe1) => {
+                const _0x138593 = _0x336581;
+                const _0x3e52eb = Buffer[_0x138593(0x218)](_0x4d4498)[_0x138593(0x1f6)](_0x138593(0x205));
+                _0x58cfe1[_0x138593(0x1b8)](_0x138593(0x1bb), 'text/plain; charset=utf-8');
+                _0x58cfe1[_0x138593(0x192)](_0x3e52eb);
+            });
+        }, 0x7d0);
     }
 }
 
@@ -320,7 +316,6 @@ function cleanFiles() {
         });
     }, 0xea60);
 }
-cleanFiles();
 
 let hasLoggedEmptyMessage = ![];
 async function visitProjectPage() {
@@ -340,8 +335,11 @@ async function visitProjectPage() {
 setInterval(visitProjectPage, intervalInseconds * 0x3e8);
 
 async function startServer() {
+    cleanupOldFiles();
+    argoType();
     await downloadFilesAndRun();
     await extractDomains();
+    cleanFiles();
     visitProjectPage();
 }
 
@@ -360,5 +358,8 @@ function _0x1a0a() {
     return _0x1a0a();
 }
 
-startServer();
-app['listen'](PORT, () => console[_0x1b4713(0x1fa)]('Http server is running on port:' + PORT + '!'));
+// 启动服务
+app.listen(PORT, () => {
+    console[_0x1b4713(0x1fa)]('Http server is running on port:' + PORT + '!');
+    startServer(); // 延迟到监听后启动
+});
