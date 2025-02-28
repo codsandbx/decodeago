@@ -2,13 +2,13 @@
   "name": "nodejs-argo",
   "version": "8.8.8",
   "description": "Thsi is a node project",
-  "main": "index_decode.js",
+  "main": "index.js",
   "author": "codzbx",
   "repository": "",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index_decode.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "latest",
