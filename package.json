@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-argo",
+  "version": "8.8.8",
+  "description": "Thsi is a node project",
+  "main": "index_decode.js",
+  "author": "codzbx",
+  "repository": "",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index_decode.js"
+  },
+  "dependencies": {
+    "axios": "latest",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
