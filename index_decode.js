@@ -5,11 +5,11 @@ const UUID = process.env.UUID || '02039208-7f6c-4375-7aea-501cc5fce2ee';
 const NEZHA_SERVER = process.env.NEZHA_SERVER || ''; // 哪吒探针服务器
 const NEZHA_PORT = process.env.NEZHA_PORT || '5555';
 const NEZHA_KEY = process.env.NEZHA_KEY || '';
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'bakforapp.ttccf.ggff.net';
-const ARGO_AUTH = process.env.ARGO_AUTH || '{"AccountTag":"7da1fc016ae3e32b37a5a3b33cde621b","TunnelSecret":"WpGKIy1k8VFBEud88JemwEx2PzXF1uEd5XQ7TftD8ZA=","TunnelID":"21104c85-d6db-4fce-b62c-6097cebba10e","Endpoint":""}';
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'decodeeoce.ttccf.ggff.net';
+const ARGO_AUTH = process.env.ARGO_AUTH || '{"AccountTag":"7da1fc016ae3e32b37a5a3b33cde621b","TunnelSecret":"mDxkUMNDHl4NmlVluUYse69zeYIXWAlV370W/l+bUfA=","TunnelID":"967db3bc-822c-4f16-87b8-c0e4ea22d270","Endpoint":""}';
 const CFIP = process.env.CFIP || 'government.se';
 const CFPORT = process.env.CFPORT || 443;
-const NAME = process.env.NAME || 'BK4app';
+const NAME = process.env.NAME || 'Codbox';
 const ARGO_PORT = process.env.ARGO_PORT || 8080;
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3000;
 
