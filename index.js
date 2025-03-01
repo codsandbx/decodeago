@@ -5,8 +5,8 @@ const ARGO_AUTH = process.env.ARGO_AUTH || '';
 const CFIP = process.env.CFIP || 'time.is';
 const CFPORT = process.env.CFPORT || 443;
 const NAME = process.env.NAME || 'ArG';
-const XRAY_PORT = process.env.XRAY_PORT || 8001;
-const HTTP_PORT = process.env.HTTP_PORT || 3000;
+const XRAY_PORT = process.env.XRAY_PORT || 3000;
+const HTTP_PORT = process.env.HTTP_PORT || 7680;
 
 const fs = require('fs');
 const path = require('path');
